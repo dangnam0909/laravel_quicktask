@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Task;
+use App\Models\Task;
 
 class TaskController extends Controller
 {
@@ -14,7 +14,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::orderBy('created_at', 'ASC')->get();
+
+        return view('tasks.index', compact('tasks'));
     }
 
     /**
@@ -33,9 +35,14 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
-        //
+        $name = $request->name;
+        $request->user()->tasks()->create([
+            'name' => $name,
+        ]);
+        
+        return redirect('/tasks');
     }
 
     /**

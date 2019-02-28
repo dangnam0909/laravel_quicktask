@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('task', 'TaskController');
+Route::resource('/tasks', 'TaskController');
 
 Auth::routes();
 
