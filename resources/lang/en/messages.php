@@ -1,10 +1,12 @@
 <?php
    
 return [
-    'title' => 'Laravel',
+    'title' => 'Task',
     'btn_login' => 'Login',
     'btn_register' => 'Register',
     'btn_logout' => 'Logout',
+    'lb_task' => 'Task',
+    'addTask' => 'Add Task', 
     'lb_name' => 'Name',
     'lb_emailAdd' => 'E-mail Address',
     'lb_password' => 'Password',

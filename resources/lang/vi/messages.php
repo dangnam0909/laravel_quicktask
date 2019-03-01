@@ -5,6 +5,8 @@ return [
     'btn_login' => 'Đăng Nhập',
     'btn_register' => 'Đăng Kí',
     'btn_logout' => 'Đăng Xuất',
+    'lb_task' => 'Nhiệm vụ',
+    'addTask' => 'Thêm nhiệm vụ', 
     'lb_name' => 'Họ Tên',
     'lb_emailAdd' => 'Địa Chỉ E-mail',
     'lb_password' => 'Mật Khẩu',
