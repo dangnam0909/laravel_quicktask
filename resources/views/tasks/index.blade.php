@@ -8,8 +8,10 @@
         {!! Form::open(['method' => 'POST', 'router' =>'task.add', 'class' => 'form-horizontal']) !!}
             <div class="form-group">
                 {!! Form::label('task-name', trans('messages.lb_task'), ['class' => 'col-sm-3 control-label']) !!}
+                
                 <div class="col-sm-6">
                     {!! Form::text('name', '', ['class' => 'form-control', 'id' => 'task-name']) !!}
+
                 </div>
             </div>
 
@@ -42,8 +44,12 @@
                                 </td>
 
                                 <td>
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['tasks.destroy', $task->id]]) !!}
+                                        {!! Form::submit(trans('home.deletetask'), ['class' => 'btn btn-default']) !!}
+                                    {!! Form::close() !!}
                                 </td>
                             </tr>
+                        
                         @endforeach
                     </tbody>
                 </table>

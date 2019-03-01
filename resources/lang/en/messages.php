@@ -19,5 +19,5 @@ return [
     'msverifyemail' => 'A fresh verification link has been sent to your email address.',
     'msverifyemail1' => 'Before proceeding, please check your email for a verification link.',
     'msverifyemail2' => 'If you did not receive the email',
-    'msverifyemail3' => 'click here to request another.'
+    'msverifyemail3' => 'click here to request another.',
 ];
