@@ -3,15 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\TaskRequest;
 use App\Models\Task;
+use Auth;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $tasks = Task::orderBy('created_at', 'ASC')->get();
@@ -24,6 +32,7 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -35,14 +44,18 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(TaskRequest $request)
     {
-        $name = $request->name;
-        $request->user()->tasks()->create([
-            'name' => $name,
-        ]);
-        
-        return redirect('/tasks');
+        $tasks = Auth::user()->tasks()->create($request->all());
+
+        if ($tasks) {
+
+            return redirect()->route('tasks.index')->with('msg', trans('messages.msgAddSuccess'));
+        } else {
+
+            return redirect()->route('tasks.index')->with('msg', trans('messages.msgAddFail'));
+        }
     }
 
     /**
@@ -51,6 +64,7 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
         //
@@ -62,6 +76,7 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
         //
@@ -74,6 +89,7 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         //
@@ -85,8 +101,18 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
-        //
+        try {
+            $task = Task::findOrFail($id);
+            $task->delete();
+
+            return redirect("/tasks")->with('messageDelete', trans('home.message-del-success'));
+        } 
+        catch (Exception $exception) {
+            
+            return redirect("/tasks")->with('messageDelete', trans('home.message-del-fail'));
+        }
     }
 }

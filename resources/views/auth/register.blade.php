@@ -8,13 +8,16 @@
                 <div class="card-header">@lang('messages.btn_register')</div>
 
                 <div class="card-body">
+
+                    @include('common.errors')
+
                     {!! Form::open(['route' =>'register', 'method' => 'POST']) !!}
                         <div class="form-group row">
                             {!! Form::label('name', @trans('messages.lb_name'), ['class' => 'col-md-4 col-form-label text-md-right']) !!}
 
                             <div class="col-md-6">
                                 {!! Form::text('name', old('name'), ['class' => 'form-control', 'id' => 'name']) !!}
-                                @include('common.errors')
+
                             </div>
                         </div>
 
@@ -23,7 +26,7 @@
 
                             <div class="col-md-6">
                                 {!! Form::email('email', old('email'), ['class' => 'form-control', 'id' => 'email']) !!}
-                                @include('common.errors')
+                                
                             </div>
                         </div>
 
@@ -33,14 +36,13 @@
                             <div class="col-md-6">
                                 {!! Form::password('password', ['class' => 'form-control', 'id' => 'password']) !!}
 
-                                @include('common.errors')
                             </div>
                         </div>
 
                         <div class="form-group row">
                             {!! Form::label('password-confim', @trans('messages.lb_confirmPass'), ['class' => 'col-md-4 col-form-label text-md-right']) !!}
                             <div class="col-md-6">
-                                {!! Form::password('password-confirm', ['class' => 'form-control', 'id' => 'password-confirm']) !!}
+                                {!! Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password-confirm']) !!}
                             </div>
                         </div>
 
@@ -56,4 +58,3 @@
     </div>
 </div>
 @endsection
-
